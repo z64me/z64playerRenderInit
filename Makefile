@@ -11,7 +11,7 @@ NOVL    = novl
 ADDRESS = 0x80800000
 
 # default compilation flags
-CFLAGS = -DNDEBUG -Wall -Wno-main -fno-common -mno-gpopt -Wno-unused-function -Wno-strict-aliasing -fomit-frame-pointer -G 0 --std=gnu99 -mtune=vr4300 -mabi=32 -mips3 -mno-check-zero-division -mno-explicit-relocs -mno-memcpy
+CFLAGS = -DNDEBUG -Wall -Wno-main -fno-reorder-blocks -fno-common -mno-gpopt -Wno-unused-function -Wno-strict-aliasing -fomit-frame-pointer -G 0 --std=gnu99 -mtune=vr4300 -mabi=32 -mips3 -mno-check-zero-division -mno-explicit-relocs -mno-memcpy
 LDFLAGS = -L$(Z64OVL_LD) -T z64ovl.ld --emit-relocs
 NOVLFLAGS = -v -c -A $(ADDRESS) -o func.ovl
 
