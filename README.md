@@ -23,13 +23,9 @@ This OoT/MM mod allows a function to be embedded within and run from Link's ZOBJ
  * actually i meant `Custom Actor Toolkit` my bad
 
 ## Warning
- * this is important
- * when you build `func.c`, it is of utmost importance that the address of `main` ends up being `0x80800000`
- * if it isn't, either `z64ovl` needs fixing, or your code needs refactored
- * try keeping everything in one function
- * if you don't do that, change everything aside from `main` to a `static inline` and see if that helps
- * `main` must be the first function in the overlay's `.text` section
- * this is important
+ * the assembly at the start of `func.c` is a hacky way of trying to guarantee a jump to the `renderinit` function will be at the beginning of the overlay's `.text` section
+ * it is very important that the beginning of the overlay's `.text` section be `renderinit`, or a jump to `renderinit`
+ * it is important that `main.c` (the mod) compiles in such a way that the function `main` has the address `0x80800000`
 
 ## OoT debug
  * write `mod.bin` at `0xBB36FC`
