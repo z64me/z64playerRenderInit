@@ -1,3 +1,14 @@
+/* something hacky:
+ * force jump from beginning of .text section to
+ * the renderinit function in case of reordering
+ */
+void renderinit(void *zobj_);
+asm(".section .text \n\
+   renderinit_wow:  \n\
+   j renderinit     \n\
+   nop              \n\
+");
+
 #include <z64ovl/oot/debug.h>
 #include <z64ovl/helpers.h>
 
