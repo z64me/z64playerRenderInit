@@ -12,7 +12,7 @@ asm(".section .text \n\
 #include <z64ovl/oot/debug.h>
 #include <z64ovl/helpers.h>
 
-void main(void *zobj_)
+void renderinit(void *zobj_)
 {
 	/* persistent storage (.bss) */
 	static vec3s_t earMod; /* _DAT_80858ac8, _DAT_80858aca, _DAT_80858acc */
