@@ -39,8 +39,7 @@ func.ovl:
 	@$(LD) -o bin/func.elf bin/func.o $(LDFLAGS) $(LDFILE)
 	$(NOVL) $(NOVLFLAGS) bin/func.elf
 	@echo "func.ovl:"
-	@$(OBJDUMP) -t bin/func.elf | grep main
-	@echo "WARNING: ensure main is at 80800000; it won't work otherwise"
+	@$(OBJDUMP) -t bin/func.elf | grep renderinit
 
 clean:
 	rm -f *.bin *.elf *.ovl
