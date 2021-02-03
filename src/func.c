@@ -10,7 +10,7 @@ asm(".section .text \n\
    nop              \n\
 ");
 
-#include <z64ovl/oot/debug.h>
+#include <z64ovl/oot/debug.h> /* TODO use different header for ntsc10 */
 #include <z64ovl/helpers.h>
 
 #define QPT(OFS) (void*)(((char*)(zobj)) + ((OFS) & 0xFFFFFF))
