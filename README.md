@@ -27,11 +27,12 @@ This OoT/MM mod allows a function to be embedded within and run from Link's ZOBJ
  * it is very important that the beginning of the overlay's `.text` section be `renderinit`, or a jump to `renderinit`
  * it is important that `main.c` (the mod) compiles in such a way that the function `main` has the address `0x80800000`
 
-## OoT debug
- * write `mod.bin` at `0xBB36FC`
- * write `00000000 00000000 0C04F157` at `0xB0E688` (this hook is subject to change) (`TODO` use a better one)
- * write `00000000` at `0xFE17FC`
- * write `00000000` at `0x10197FC`
+## OoT debug ([`bin/oot/debug`](bin/oot/debug))
+ * write `code_0x129d00.bin` at `0x129D00` in `code`
+ * write `code_0x75264.bin` at `0x75264` in `code`
+ * write `player_0x17f8c.bin` at `0x17F8C` in `ovl_player_actor`
+ * write `00000000` at `0xFE17FC` (if using vanilla `Adult Link`)
+ * write `00000000` at `0x10197FC` (if using vanilla `Young Link`)
  * `TODO` this should be made an easy-to-use patch when finalized
 
 ## OoT NTSC 1.0
