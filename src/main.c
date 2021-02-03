@@ -1,4 +1,10 @@
-#include <z64ovl/oot/debug.h>
+#define RENDERINIT_OOT_10U /* building for 10u */
+
+#ifdef RENDERINIT_OOT_10U
+#  include <z64ovl/oot/u10.h>
+#else
+#  include <z64ovl/oot/debug.h>
+#endif
 #include <z64ovl/helpers.h>
 
 #define OverrideLimbDrawOpa void*
@@ -6,7 +12,11 @@
 
 typedef void fptr(void *);
 
-asm("func_8008F470 = 0x8008F470");
+#ifdef RENDERINIT_OOT_10U
+  asm("func_8008F470 = 0x80079F48");
+#else
+  asm("func_8008F470 = 0x8008F470");
+#endif
 extern void func_8008F470(
 	z64_global_t *globalCtx
 	, void **skeleton
@@ -32,7 +42,8 @@ void main_wowProc(
 	, int32_t face
 	, OverrideLimbDrawOpa overrideLimbDraw
 	, PostLimbDrawOpa postLimbDraw
-	, void *data)
+	, void *data
+)
 {
 	unsigned char *zobj = (void*)zh_seg2ram(0x06000000);
 	unsigned end = *(unsigned*)(zobj + (0x5000 + 0x800 - 4));
