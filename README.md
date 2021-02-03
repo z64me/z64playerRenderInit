@@ -28,11 +28,9 @@ This OoT/MM mod allows a function to be embedded within and run from Link's ZOBJ
  * it is important that `main.c` (the mod) compiles in such a way that the function `main` has the address `0x80800000`
 
 ## OoT debug (`bin/oot/debug` folder)
- * write `code_0x72610.bin` at `0x72610` in `code`
- * write `gk_0x4380.bin` at `0x4380` in `gameplay_keep`
- * write `gk_0x15968.bin` at `0x15968` in `gameplay_keep`
- * write `gk_0x5abc.bin` at `0x5ABC` in `gameplay_keep`
- * write `gk_0x5f4c.bin` at `0x5F4C` in `gameplay_keep`
+ * write `code_0x129d00.bin` at `0x129D00` in `code`
+ * write `code_0x75264.bin` at `0x75264` in `code`
+ * write `player_0x17f8c.bin` at `0x17F8C` in `ovl_player_actor`
  * write `00000000` at `0xFE17FC` (if using vanilla `Adult Link`)
  * write `00000000` at `0x10197FC` (if using vanilla `Young Link`)
  * `TODO` this should be made an easy-to-use patch when finalized
