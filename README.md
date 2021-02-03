@@ -29,14 +29,19 @@ This OoT/MM mod allows a function to be embedded within and run from Link's ZOBJ
 
 ## OoT debug ([`bin/oot/debug`](bin/oot/debug))
  * write `code_0x129d00.bin` at `0x129D00` in `code`
- * write `code_0x75264.bin` at `0x75264` in `code`
- * write `player_0x17f8c.bin` at `0x17F8C` in `ovl_player_actor`
- * write `00000000` at `0xFE17FC` (if using vanilla `Adult Link`)
- * write `00000000` at `0x10197FC` (if using vanilla `Young Link`)
+ * write `0C051AD8` at `0x75264` in `code`
+ * write `0C051AD8` at `0x17F8C` in `ovl_player_actor`
+ * write `00000000` at `0xFE17FC` (if using vanilla `Adult Link`) (that is at `0x57FC` in his `zobj`)
+ * write `00000000` at `0x10197FC` (if using vanilla `Young Link`) (that is at `0x57FC` in his `zobj`)
  * `TODO` this should be made an easy-to-use patch when finalized
 
-## OoT NTSC 1.0
- * `TODO` someone please get this working for oot ntsc 1.0 my dog ate my expansion pak and master quest is hard
+## OoT NTSC 1.0 ([`bin/oot/ntsc10`](bin/oot/ntsc10))
+ * write `code_0xf7e80.bin` at `0xF7E80` in `code`
+ * write `0C0423C8` at `0x6B940` in `code`
+ * write `0C0423C8` at `0x180DC` in `ovl_player_actor`
+ * write `00000000` at `0xF8B7FC` (if using vanilla `Adult Link`) (that is at `0x57FC` in his `zobj`)
+ * write `00000000` at `0xFC37FC` (if using vanilla `Young Link`) (that is at `0x57FC` in his `zobj`)
+ * ~~`TODO` someone please get this working for oot ntsc 1.0 my dog ate my expansion pak and master quest is hard~~
 
 ## Using `func.ovl` once you've built or downloaded one
  * `func.ovl` goes in the `Physics ZOVL` field in `zzplayas`
