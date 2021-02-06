@@ -1,4 +1,4 @@
-#define RENDERINIT_OOT_10U /* building for 10u */
+//#define RENDERINIT_OOT_10U /* building for 10u */
 
 #ifdef RENDERINIT_OOT_10U
 #  include <z64ovl/oot/u10.h>
@@ -9,6 +9,14 @@
 
 #define OverrideLimbDrawOpa void*
 #define PostLimbDrawOpa void*
+
+enum z64playerRenderInit_section
+{
+	TEXT = 0
+	, DATA = 1
+	, RODATA = 2
+	, BSS = 3
+};
 
 typedef void fptr(void *);
 
@@ -61,10 +69,11 @@ void main_wowProc(
 		unsigned ofs = *(unsigned*)(zobj + (end - 4));
 		unsigned *section = (void*)(zobj + (end - ofs));
 		unsigned start = ((unsigned)section) - (
-			section[0] /* text */
-			+ section[1] /* data */
-			+ section[2] /* rodata */
+			section[TEXT]
+			+ section[DATA]
+			+ section[RODATA]
 		);
+		unsigned size;
 		start -= start & 15;
 		z_overlay_do_relocation(
 			(void*)start
@@ -72,6 +81,11 @@ void main_wowProc(
 			, (void*)0x80800000
 		);
 		*has_relocd = start;
+		
+		/* clear instruction cache for this memory region */
+		size = ((zobj + end) - (unsigned char*)start) + section[BSS];
+		osWritebackDCache((void*)start, size);
+		osInvalICache((void*)start, size);
 	}
 	exec = (fptr*)(*has_relocd);
 	exec(zobj);
