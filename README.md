@@ -37,12 +37,11 @@ This OoT/MM mod allows a function to be embedded within and run from Link's ZOBJ
  * `TODO` this should be made an easy-to-use patch when finalized
 
 ## OoT NTSC 1.0 ([`bin/oot/ntsc10`](bin/oot/ntsc10))
- * write `boot_TODO.bin` at `TODO` in `boot`
- * write `TODO` at `0x6B940` in `code`
- * write `TODO` at `0x180DC` in `ovl_player_actor`
+ * write `code_0x9dac4.bin` at `0xB24AC4` (that is at `0x9DAC4` in `code`)
+ * write `0C02BAD9` at `0xAF2940` (that is at `0x6B940` in `code`)
+ * write `0C02BAD9` at `0xBE5C4C` (that is at `0x180DC` in `ovl_player_actor`)
  * write `00000000` at `0xF8B7FC` (if using vanilla `Adult Link`) (that is at `0x57FC` in his `zobj`)
  * write `00000000` at `0xFC37FC` (if using vanilla `Young Link`) (that is at `0x57FC` in his `zobj`)
- * update the CRC
  * ~~`TODO` someone please get this working for oot ntsc 1.0 my dog ate my expansion pak and master quest is hard~~
 
 ## Using `func.ovl` once you've built or downloaded one
