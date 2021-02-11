@@ -44,7 +44,7 @@ This OoT/MM mod allows a function to be embedded within and run from Link's ZOBJ
  * ~~`TODO` someone please get this working for oot ntsc 1.0 my dog ate my expansion pak and master quest is hard~~
 
 ## Using `func.ovl` once you've built or downloaded one
- * `func.ovl` goes in the `Physics ZOVL` field in `zzplayas`
+ * `func.ovl` goes in the `Dynamic ZOVL` field in `zzplayas`
  * make sure you have patched your game to be compatible with this tweak first
  * wow how easy
 
