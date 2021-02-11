@@ -60,7 +60,7 @@ struct z64playerRenderInit
    } u;
 } *rinit;
 ```
-Immediately before Link's drawing routine, the mod checks `rinit->u.header`. When its value is `0`, no overlay is present. If it's a ram address, the function at that address is executed. Otherwise, the overlay described by `rinit` is relocated (a process which converts virtual ram addresses to physical ram addresses), and `exec` is updated to point to the main routine in the overlay.
+Immediately before Link's drawing routine, the mod checks `rinit->u.header`. If its value is `0`, no overlay is present. If it's a ram address, the function at that address is executed. Otherwise, the overlay described by `rinit` is relocated (a process which converts virtual ram addresses to physical ram addresses), and `rinit->u.exec` is updated to point to the main routine in the overlay.
 
 In other words, this mod executes code stored in Link's 3D model file, of all places.
 
