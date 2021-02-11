@@ -1,5 +1,5 @@
 # z64playerRenderInit
-This OoT/MM mod allows a function to be embedded within and run from Link's ZOBJs once per frame, enabling us to do fun effects like flowing capes, glowing materials, physics, scrolling textures, alternate costume/tunic models, etc.
+This OoT/MM mod allows a function to be embedded within and run from Link's ZOBJs (3D model files) once per frame, enabling us to do fun effects like flowing capes, glowing materials, physics, scrolling textures, alternate costume/tunic models, etc.
 
 ## Showcase
  * `TODO` i didnt write this for nothing i want to see people do cool stuff with it and they will be organized here and people can download and use them for their own custom playas mods and it's gonna be great
