@@ -43,6 +43,7 @@ DICTIONARY
     DL_LONGSWORD_HILT     0x017148    "Hilt.3"
     DL_LONGSWORD_BLADE    0x0174E0    "Blade.3"
     DL_LONGSWORD_BROKEN   0x017700    "Broken.Blade.3"
+    DL_SHIELD_DEKU        0x01A210    "Shield.1" // DF command
     DL_SHIELD_HYLIAN      0x018BC0    "Shield.2"
     DL_SHIELD_MIRROR      0x0190E8    "Shield.3"
     DL_HAMMER             0x0184A8    "Hammer"
@@ -50,6 +51,7 @@ DICTIONARY
     DL_BOW                0x019810    "Bow"
     DL_OCARINA_TIME       0x019AE0    "Ocarina.2"
     DL_HOOKSHOT           0x019FC0    "Hookshot"
+    DL_BOOMERANG          0x01A210    "Boomerang" // DF command
 
     // Flair
     DL_UPGRADE_LFOREARM   0x01D688    "Gauntlet.Forearm.L"
@@ -77,8 +79,8 @@ DICTIONARY
     DL_BOW_STRING         0x020F20    "Bow.String"
     DL_BLADEBREAK         0x0212A0    "Blade.3.Break"
   
-  // Skeletons
-  SK_MAIN                 0x0         "skeleton.riggedmesh"
+    // Skeletons
+    SK_MAIN               0x0         "skeleton.riggedmesh"
 END
 
 // Matrix function parameters:
@@ -167,6 +169,33 @@ OBJECT POOL=0x5000,0x800
     DL_FPS_LHAND_HOOKSHOT:
         CallList( DL_FPS_HOOKSHOT );
         CallList( DL_FPS_RHAND );
+
+// extras
+    LUT_DL_BOOMERANG:
+        CallList( DL_BOOMERANG );
+
+    LUT_DL_LFIST_BOOMERANG:
+        CallList( LUT_DL_BOOMERANG );
+        CallList( LUT_DL_LFIST );
+
+    LUT_DL_SHIELD_DEKU:
+        CallList( DL_SHIELD_DEKU );
+
+    LUT_DL_RFIST_SHIELD_DEKU:
+        CallList( LUT_DL_SHIELD_DEKU );
+        CallList( LUT_DL_RFIST );
+
+    LUT_DL_SHIELD_DEKU_BACK:
+        CallMatrix( MATRIX_SHIELD_BACK );
+        CallList( LUT_DL_SHIELD_DEKU );
+    
+    LUT_DL_SWORD_SHIELD_DEKU:
+        CallList( DL_SWORD_SHEATHED );
+        CallList( LUT_DL_SHIELD_DEKU_BACK );
+
+    LUT_DL_SHEATH0_DEKU:
+        CallList( DL_SWORD_SHEATH );
+        CallList( LUT_DL_SHIELD_DEKU_BACK );
 END
 
 REPOINT
@@ -175,28 +204,28 @@ REPOINT
     SetAdvance( 8 );
         Write32( DL_RFIST );                        //    Right Fist (High Poly)
         Write32( DL_RFIST );                        //    Right Fist (Low Poly)
-        Write32( DL_RFIST );                        //    Right Fist + Deku Shield (High Poly)
-        Write32( DL_RFIST );                        //    Right Fist + Deku Shield (Low Poly)
+        Write32( LUT_DL_RFIST_SHIELD_DEKU );        //    Right Fist + Deku Shield (High Poly)
+        Write32( LUT_DL_RFIST_SHIELD_DEKU );        //    Right Fist + Deku Shield (Low Poly)
         Write32( DL_RFIST_SHIELD_HYLIAN );          //    Right Fist + Hylian Shield (High Poly)
         Write32( DL_RFIST_SHIELD_HYLIAN );          //    Right Fist + Hylian Shield (Low Poly)
         Write32( DL_RFIST_SHIELD_MIRROR );          //    Right Fist + Mirror Shield (High Poly)
         Write32( DL_RFIST_SHIELD_MIRROR );          //    Right Fist + Mirror Shield (Low Poly)
         Write32( DL_SWORD_SHEATHED );               //    Sheathed Sword (High Poly)
         Write32( DL_SWORD_SHEATHED );               //    Sheathed Sword (Low Poly)
-        Write32( DL_SWORD_SHEATHED );               //    Deku Shield + Sheathed Sword (High Poly)
-        Write32( DL_SWORD_SHEATHED );               //    Deku Shield + Sheathed Sword (Low Poly)
+        Write32( LUT_DL_SWORD_SHIELD_DEKU );        //    Deku Shield + Sheathed Sword (High Poly)
+        Write32( LUT_DL_SWORD_SHIELD_DEKU );        //    Deku Shield + Sheathed Sword (Low Poly)
         Write32( DL_SWORD_SHIELD_HYLIAN );          //    Hylian Shield + Sheathed Sword (High Poly)
         Write32( DL_SWORD_SHIELD_HYLIAN );          //    Hylian Shield + Sheathed Sword (Low Poly)
         Write32( DL_SWORD_SHIELD_MIRROR );          //    Mirror Shield + Sheathed Sword (High Poly)
         Write32( DL_SWORD_SHIELD_MIRROR );          //    Mirror Shield + Sheathed Sword (Low Poly)
         Write32( 0x00000000 );                      //    ? (High Poly)
         Write32( 0x00000000 );                      //    ? (Low Poly)
-        Write32( 0x00000000 );                      //    Deku Shield without Sheath (High Poly)
-        Write32( 0x00000000 );                      //    Deku Shield without Sheath (Low Poly)
+        Write32( LUT_DL_SHIELD_DEKU_BACK );         //    Deku Shield without Sheath (High Poly)
+        Write32( LUT_DL_SHIELD_DEKU_BACK );         //    Deku Shield without Sheath (Low Poly)
         Write32( DL_SWORD_SHEATH );                 //    Sword Sheath (High Poly)
         Write32( DL_SWORD_SHEATH );                 //    Sword Sheath (Low Poly)
-        Write32( DL_SWORD_SHEATH );                 //    Deku Shield + Sheath (High Poly)
-        Write32( DL_SWORD_SHEATH );                 //    Deku Shield + Sheath (Low Poly)
+        Write32( LUT_DL_SHEATH0_DEKU );             //    Deku Shield + Sheath (High Poly)
+        Write32( LUT_DL_SHEATH0_DEKU );             //    Deku Shield + Sheath (Low Poly)
         Write32( DL_SHEATH0_HYLIAN );               //    Hylian Shield + Sheath (High Poly)
         Write32( DL_SHEATH0_HYLIAN );               //    Hylian Shield + Sheath (Low Poly)
         Write32( DL_SHEATH0_MIRROR );               //    Mirror Shield + Sheath (High Poly)
@@ -239,8 +268,8 @@ REPOINT
         Write32( DL_RFIST_HOOKSHOT );               //    Right Fist + Hookshot / Longshot (Low Poly)
         Write32( DL_LFIST_HAMMER );                 //    Left Fist + Megaton Hammer (High Poly)
         Write32( DL_LFIST_HAMMER );                 //    Left Fist + Megaton Hammer (Low Poly)
-        Write32( DL_LFIST );                        //    Left Fist + Boomerang (High Poly)
-        Write32( DL_LFIST );                        //    Left Fist + Boomerang (Low Poly)
+        Write32( LUT_DL_LFIST_BOOMERANG );          //    Left Fist + Boomerang (High Poly)
+        Write32( LUT_DL_LFIST_BOOMERANG );          //    Left Fist + Boomerang (Low Poly)
         Write32( DL_LHAND_BOTTLE );                 //    Outstretched Left Hand for Holding Bottles (High Poly)
         Write32( DL_LHAND_BOTTLE );                 //    Outstretched Left Hand for Holding Bottles (Low Poly)
         Write32( DL_FPS_LFOREARM );                 //    FPS Left Forearm
@@ -329,5 +358,20 @@ REPOINT
 
     GoTo( VROM_SS_STICK+0x00000358 );           //    Giant's Knife / Biggoron Sword Object File
     Write16( OBJ_BOY );
-END
 
+// item usability table
+   GoTo ( VROM_CODE+0x165B0C+0x19);  // kokiri sword
+   Write8(0x09);
+   GoTo ( VROM_CODE+0x165B0C+0x1D);  // deku shield
+   Write8(0x09);
+   GoTo ( VROM_CODE+0x165B0C+0x0C);  // boomerang
+   Write8(0x09);
+
+// item highlight table
+   GoTo ( VROM_CODE+0x165B0C+0x63);  // kokiri sword
+   Write8(0x09);
+   GoTo ( VROM_CODE+0x165B0C+0x66);  // deku shield
+   Write8(0x09);
+   GoTo ( VROM_CODE+0x165B0C+0x36);  // boomerang
+   Write8(0x09);
+END
