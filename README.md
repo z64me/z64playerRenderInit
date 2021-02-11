@@ -28,12 +28,11 @@ This OoT/MM mod allows a function to be embedded within and run from Link's ZOBJ
  * it is important that `main.c` (the mod) compiles in such a way that the function `main` has the address `0x80800000`
 
 ## OoT debug ([`bin/oot/debug`](bin/oot/debug))
- * write `boot_0x26B0.bin` at `0x26B0` in `boot`
- * write `0C000AC6` at `0x75264` in `code`
- * write `0C000AC6` at `0x17F8C` in `ovl_player_actor`
+ * write `code_0xb8828.bin` at `0xB4C828` (that is at `0xB8828` in `code`)
+ * write `0C0355A2` at `0xB09264` (that is at `0x75264` in `code`)
+ * write `0C0355A2` at `0xC1903C` (that is at `0x17F8C` in `ovl_player_actor`)
  * write `00000000` at `0xFE17FC` (if using vanilla `Adult Link`) (that is at `0x57FC` in his `zobj`)
  * write `00000000` at `0x10197FC` (if using vanilla `Young Link`) (that is at `0x57FC` in his `zobj`)
- * update the CRC
  * `TODO` this should be made an easy-to-use patch when finalized
 
 ## OoT NTSC 1.0 ([`bin/oot/ntsc10`](bin/oot/ntsc10))
