@@ -10,12 +10,9 @@
 #define OverrideLimbDrawOpa void*
 #define PostLimbDrawOpa void*
 
-enum z64playerRenderInit_section
+struct ovlHead
 {
-	TEXT = 0
-	, DATA = 1
-	, RODATA = 2
-	, BSS = 3
+	uint32_t text; /* size of .text section */
 };
 
 typedef void fptr(void *);
@@ -53,47 +50,51 @@ void main_wowProc(
 	, void *data
 )
 {
-	unsigned char *zobj = (void*)zh_seg2ram(0x06000000);
-	unsigned end = *(unsigned*)(zobj + (0x5000 + 0x800 - 4));
-	unsigned *has_relocd;
+	uint8_t *zobj = (void*)zh_seg2ram(0x06000000);
+	uintptr_t *ptr = (uintptr_t*)(zobj + (0x5000 + 0x800 - 4));
+	struct ovlHead *header;
+	void *start;
 	fptr *exec;
+	uint32_t size;
+	
+	/* `ptr` points to 0x57FC in Link's ZOBJ, which will be:
+	 *  -> zero, if no embedded overlay is present
+	 *  -> or the offset of the overlay's header within `zobj`
+	 *     (the u32 preceding this u32 is overlay start offset)
+	 *  -> or a pointer to the overlay's main routine
+	 */
 	
 	/* zobj doesn't contain embedded overlay */
-	if (!end)
+	if (!*ptr)
 		goto L_next;
 	
-	/* do relocations */
-	has_relocd = (unsigned*)(zobj + (0x5000 + 0x800 - 8));
-	if (!*has_relocd)
+	/* not yet relocated */
+	if (!(*ptr & 0x80000000))
 	{
-		unsigned ofs = *(unsigned*)(zobj + (end - 4));
-		unsigned *section = (void*)(zobj + (end - ofs));
-		unsigned start = ((unsigned)section) - (
-			section[TEXT]
-			+ section[DATA]
-			+ section[RODATA]
-		);
-		unsigned size;
-		start -= start & 15;
+		/* relocate overlay */
+		header = (struct ovlHead*)(zobj + *ptr);
+		start = zobj + *(ptr-1);
 		z_overlay_do_relocation(
-			(void*)start
-			, section
+			start
+			, header
 			, (void*)0x80800000
 		);
-		*has_relocd = start;
 		
-		/* clear instruction cache for this memory region */
-		size = ((zobj + end) - (unsigned char*)start) + section[BSS];
-		osWritebackDCache((void*)start, size);
-		osInvalICache((void*)start, size);
+		/* update `ptr` to main routine */
+		*ptr = (uintptr_t)start;
+		
+		/* clear instruction cache for .text section memory region */
+		size = header->text;
+		osWritebackDCache(start, size);
+		osInvalICache(start, size);
 	}
-	exec = (fptr*)(*has_relocd);
+	exec = (fptr*)(*ptr);
 	exec(zobj);
 	
 	/* draw player model */
 L_next:
 	func_8008F470(
-		globalCtx
+		(void*)GLOBAL_CONTEXT/*globalCtx*/
 		, skeleton
 		, jointTable
 		, dListCount
