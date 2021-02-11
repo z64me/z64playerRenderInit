@@ -67,4 +67,4 @@ In other words, this mod executes code stored in Link's 3D model file, of all pl
 ## Why do it this way?
 My approach is meant to maximize accessibility, portability, and ease of use: apply a very small patch to the game and you're ready to write code for your play-as mod. You don't have to worry about setting up your own hook, or injecting code, or hardware/Wii-VC compatibility, or porting (just change build targets). All the hard work is already done for you so you can focus on the fun part: being creative.
 
-An added bonus of using this implementation is that your play-as mods are automatically compatible with Ocarina of Time Online.
+An additional benefit from using this implementation is that your play-as mods are automatically compatible with Ocarina of Time Online.
