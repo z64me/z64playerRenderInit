@@ -5,11 +5,10 @@ This OoT/MM mod allows functions to be embedded into and run from within player 
 [![TP Link 64 Deluxe](img/tplink64d.gif)](https://www.youtube.com/watch?v=HG5e8ky8Q6Y)
 
 ## Prerequisites
- * `zzplayas` rev 4b or newer
- * `zzconvert` rev 8b or newer
+ * [`z64playas`](http://www.z64.me/tools/z64playas)
+ * [`z64convert`](http://www.z64.me/tools/z64convert)
  * `z64ovl` or `Sharp Ocarina`
- * your `zzplayas` manifest must use the `POOL` feature
- * the `b` stands for `beta`; if you aren't a collaborator you will have to wait until the official releases ;(
+ * your `z64playas` manifest must use the `POOL` feature
 
 ## Building (`z64ovl`)
  * change the `#include`s to be for your specific version or game
@@ -20,7 +19,7 @@ This OoT/MM mod allows functions to be embedded into and run from within player 
  * this is how most people will use this
  * adjust the `#include` in your source to be for the game and version you're targeting
  * use `Custom Actor Toolkit` to build `func.c` (it's super straightforward)
- * `func.ovl` will be generated, which you then use in `zzplayas`
+ * `func.ovl` will be generated, which you then use in `z64playas`
 
 ## Warning
  * the assembly at the start of `func.c` is a hacky way of trying to guarantee a jump to the `renderinit` function will be at the beginning of the overlay's `.text` section
@@ -42,7 +41,7 @@ This OoT/MM mod allows functions to be embedded into and run from within player 
  * write `00000000` at `0xFC37FC` (if using vanilla `Young Link`) (that is at `0x57FC` in his `zobj`)
 
 ## Using `func.ovl` once you've built or downloaded one
- * `func.ovl` goes in the `Dynamic ZOVL` field in `zzplayas`
+ * `func.ovl` goes in the `Dynamic ZOVL` field in `z64playas`
  * make sure you have patched your game to be compatible with this tweak first
  * wow how easy
 
