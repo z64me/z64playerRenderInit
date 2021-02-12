@@ -2,7 +2,7 @@
 This OoT/MM mod allows functions to be embedded into and run from within player model files once per frame, enabling us to do fun effects like flowing capes, glowing materials, physics, scrolling textures, alternate costume/tunic models, HUD elements, and more.
 
 ## Showcase
- * `TODO` TP Link 64 Deluxe
+[![TP Link 64 Deluxe](img/tplink64d.gif)](https://www.youtube.com/watch?v=HG5e8ky8Q6Y)
 
 ## Prerequisites
  * `zzplayas` rev 4b or newer
