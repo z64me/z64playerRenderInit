@@ -8,42 +8,40 @@ This OoT/MM mod allows functions to be embedded into and run from within player 
  * [`z64playas`](http://www.z64.me/tools/z64playas)
  * [`z64convert`](http://www.z64.me/tools/z64convert)
  * `z64ovl` or `Sharp Ocarina`
- * your `z64playas` manifest must use the `POOL` feature
+ * Your `z64playas` manifest must use the `POOL` feature!
 
 ## Building (`z64ovl`)
- * change the `#include`s to be for your specific version or game
- * run `make clean && make`
- * `func.ovl` and `mod.bin` are generated
+ * Change the `#include`s to be for your specific version or game.
+ * Run `make clean && make`
+ * `func.ovl` and `mod.bin` are generated.
 
 ## Building (`Custom Actor Toolkit`)
- * this is how most people will use this
- * adjust the `#include` in your source to be for the game and version you're targeting
- * use `Custom Actor Toolkit` to build `func.c` (it's super straightforward)
- * `func.ovl` will be generated, which you then use in `z64playas`
+ * This is how most people will use it.
+ * Adjust the `#include` in your source code to be for the game and version you're targeting.
+ * Use `Custom Actor Toolkit` to build `func.c` (it's super straightforward).
+ * `func.ovl` will be generated, which you then use in `z64playas`.
 
 ## Warning
- * the assembly at the start of `func.c` is a hacky way of trying to guarantee a jump to the `renderinit` function will be at the beginning of the overlay's `.text` section
- * it is very important that the beginning of the overlay's `.text` section be `renderinit`, or a jump to `renderinit`
- * it is important that `main.c` (the mod) compiles in such a way that the function `main_wowProc` has the address `0x80800000`
+ * The assembly at the start of `func.c` is a hacky way of trying to guarantee a jump to the `renderinit` function will be at the beginning of the overlay's `.text` section.
+ * It is very important that the beginning of the overlay's `.text` section be `renderinit`, or a jump to `renderinit` (see above).
 
 ## OoT debug ([`bin/oot/debug`](bin/oot/debug))
- * write `code_0xb8828.bin` at `0xB4C828` (that is at `0xB8828` in `code`)
- * write `0C0355A2` at `0xB09264` (that is at `0x75264` in `code`)
- * write `0C0355A2` at `0xC1903C` (that is at `0x17F8C` in `ovl_player_actor`)
- * write `00000000` at `0xFE17FC` (if using vanilla `Adult Link`) (that is at `0x57FC` in his `zobj`)
- * write `00000000` at `0x10197FC` (if using vanilla `Young Link`) (that is at `0x57FC` in his `zobj`)
+ * Write `code_0xb8828.bin` at `0xB4C828` (that is at `0xB8828` in `code`)
+ * Write `0C0355A2` at `0xB09264` (that is at `0x75264` in `code`)
+ * Write `0C0355A2` at `0xC1903C` (that is at `0x17F8C` in `ovl_player_actor`)
+ * Write `00000000` at `0xFE17FC` (if using vanilla `Adult Link`) (that is at `0x57FC` in his `zobj`)
+ * Write `00000000` at `0x10197FC` (if using vanilla `Young Link`) (that is at `0x57FC` in his `zobj`)
 
 ## OoT NTSC 1.0 ([`bin/oot/ntsc10`](bin/oot/ntsc10))
- * write `code_0x9dac4.bin` at `0xB24AC4` (that is at `0x9DAC4` in `code`)
- * write `0C02BAD9` at `0xAF2940` (that is at `0x6B940` in `code`)
- * write `0C02BAD9` at `0xBE5C4C` (that is at `0x180DC` in `ovl_player_actor`)
- * write `00000000` at `0xF8B7FC` (if using vanilla `Adult Link`) (that is at `0x57FC` in his `zobj`)
- * write `00000000` at `0xFC37FC` (if using vanilla `Young Link`) (that is at `0x57FC` in his `zobj`)
+ * Write `code_0x9dac4.bin` at `0xB24AC4` (that is at `0x9DAC4` in `code`)
+ * Write `0C02BAD9` at `0xAF2940` (that is at `0x6B940` in `code`)
+ * Write `0C02BAD9` at `0xBE5C4C` (that is at `0x180DC` in `ovl_player_actor`)
+ * Write `00000000` at `0xF8B7FC` (if using vanilla `Adult Link`) (that is at `0x57FC` in his `zobj`)
+ * Write `00000000` at `0xFC37FC` (if using vanilla `Young Link`) (that is at `0x57FC` in his `zobj`)
 
 ## Using `func.ovl` once you've built or downloaded one
  * `func.ovl` goes in the `Dynamic ZOVL` field in `z64playas`
- * make sure you have patched your game to be compatible with this tweak first
- * wow how easy
+ * Make sure you have patched your game to be compatible with this tweak first using the instructions above.
 
 ## How does it work? (a technical explanation)
 This mod assumes a structure of this type resides at `0x57F8` in Link's 3D model file:
