@@ -1,4 +1,5 @@
 # FIXME func.ovl requires -O1 optimization for some reason (thanks, rankaisija!)
+# XXX it has been a while and -Os seems to be fine now; just keep -O1 in mind if things ever break again
 
 # toolchain
 CC      = mips64-gcc
@@ -34,7 +35,8 @@ func.ovl:
 	@echo -n "ENTRY_POINT = " > entry.ld
 	@echo -n $(ADDRESS) >> entry.ld
 	@echo -n ";" >> entry.ld
-	@$(CC) -c src/func.c $(CFLAGS) -O1
+	#@$(CC) -c src/func.c $(CFLAGS) -O1
+	@$(CC) -c src/func.c $(CFLAGS) -Os
 	@mv func.o bin/func.o
 	@$(LD) -o bin/func.elf bin/func.o $(LDFLAGS) $(LDFILE)
 	$(NOVL) $(NOVLFLAGS) bin/func.elf
@@ -43,3 +45,4 @@ func.ovl:
 
 clean:
 	rm -f *.bin *.elf *.ovl
+
