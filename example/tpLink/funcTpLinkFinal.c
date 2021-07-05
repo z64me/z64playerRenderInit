@@ -97,7 +97,7 @@ asm(".section .text \n\
 
 #include "tp-link.h"
 
-#define  MAGIC_ARMOR_SHIRT   0x2F2D3Eff /* undertunic color */
+#define  MAGIC_ARMOR_SHIRT   0x2F2D3Eff /* undershirt color */
 #define  ZORA_MASK_OFF 1
 #define  ZORA_MASK_ON  0
 
